@@ -77,7 +77,6 @@ export default function HowItWorksSection() {
           and reliable.
         </p>
       </div>
-
       {/* Steps Container */}
       <div className="relative max-w-6xl mx-auto">
         {/* Progress Line - Now visible on all screen sizes, positioned to the left */}
@@ -86,11 +85,10 @@ export default function HowItWorksSection() {
           style={{ top: "10px", height: "calc(100% - 80px)" }}
         >
           <div
-            className="w-full bg-blue-500 rounded-full transition-all duration-500 ease-out"
+            className="w-full bg-blue-500 rounded-full transition-all duration-1000 ease-out" // Increased duration
             style={{ height: `${scrollProgress * 100}%` }}
           />
         </div>
-
         {/* Steps */}
         {steps.map((step, index) => (
           <div
@@ -109,11 +107,12 @@ export default function HowItWorksSection() {
             >
               {/* Mobile/Desktop Circle Indicator */}
               <div
-                className={`absolute left-6 sm:left-1/2 transform -translate-x-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center z-10 bg-white border-2 border-gray-200 shadow-sm transition-all duration-500`}
+                className={`absolute left-6 sm:left-1/2 transform -translate-x-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center z-10 bg-white border-2 border-gray-200 shadow-sm transition-all duration-1000`} // Increased duration
                 style={{ top: "0px" }} // Position at the top of the step content
               >
                 <div
-                  className={`w-full h-full rounded-full flex items-center justify-center text-white text-lg sm:text-xl transition-all duration-500 ${
+                  className={`w-full h-full rounded-full flex items-center justify-center text-white text-lg sm:text-xl transition-all duration-1000 ${
+                    // Increased duration
                     activeStep >= index
                       ? `bg-gradient-to-br ${step.color} scale-110 shadow-xl`
                       : "bg-gray-300"
@@ -125,7 +124,8 @@ export default function HowItWorksSection() {
               {/* Content Block */}
               <div className="flex-1">
                 <div
-                  className={`transition-all duration-700 ${
+                  className={`transition-all duration-1000 ${
+                    // Increased duration
                     activeStep >= index
                       ? "opacity-100 translate-y-0"
                       : "opacity-50 translate-y-8"
@@ -157,7 +157,6 @@ export default function HowItWorksSection() {
                 </div>
               </div>
             </div>
-
             {/* Illustration */}
             <div
               className={`w-full md:w-1/2 mt-8 md:mt-0 ${
@@ -165,7 +164,8 @@ export default function HowItWorksSection() {
               } pl-0 pr-0`}
             >
               <div
-                className={`transition-all duration-700 ${
+                className={`transition-all duration-1000 ${
+                  // Increased duration
                   activeStep >= index
                     ? "opacity-100 translate-y-0"
                     : "opacity-50 translate-y-8"

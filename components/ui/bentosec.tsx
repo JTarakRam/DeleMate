@@ -3,14 +3,14 @@
 export default function BentoSection() {
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-y-6 mb-16 px-4 sm:px-6">
+      <div className="flex flex-col items-center justify-center  gap-y-6 mb-16 px-4 sm:px-6">
         <div className="text-center">
           <h2 className="text-3xl sm:text-4xl md:text-[48px] font-semibold tracking-tighter leading-tight sm:leading-16">
             Send With{" "}
             <span className="text-[#133bb7] italic text-4xl sm:text-5xl md:text-[52px]">
               heart
             </span>{" "}
-            <br className="sm:hidden" />
+            <br />
             Travel with{" "}
             <span className="text-[#133bb7] italic text-4xl sm:text-5xl md:text-[52px]">
               Purpose

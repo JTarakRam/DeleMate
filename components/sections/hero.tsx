@@ -56,7 +56,7 @@ export default function HeroSection() {
       </motion.div>
       <div className="text-center flex items-center flex-col gap-y-4 relative">
         {/* Left Parcel Image */}
-        <div className="absolute -left-[150px] top-1/2 transform -translate-y-1/2 z-10 hidden md:block lg:-left-[250px] xl:-left-[400px]">
+        <div className="absolute -left-[150px] top-1/2 transform -translate-y-1/2 z-10 hidden md:block lg:-left-[250px] xl:-left-[250px]">
           <Image
             src="/fromyou.png"
             alt="Parcel from you"
@@ -66,7 +66,7 @@ export default function HeroSection() {
           />
         </div>
         {/* Right Parcel Image */}
-        <div className="absolute -right-[150px] top-1/2 transform -translate-y-1/2 z-10 hidden md:block lg:-right-[250px] xl:-right-[400px]">
+        <div className="absolute -right-[150px] top-1/2 transform -translate-y-1/2 z-10 hidden md:block lg:-right-[250px] xl:-right-[250px]">
           <Image
             src="/anywhere.png"
             alt="Parcel to destination"
