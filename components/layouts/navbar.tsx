@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { useState, useRef } from "react";
 import {
@@ -8,23 +9,35 @@ import {
   Package,
   DollarSign,
   Shield,
-} from "lucide-react";
+  FileText,
+  Briefcase,
+  BookOpen,
+} from "lucide-react"; // Added new icons
 import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // State for mobile menu open/close
-  const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false); // State for desktop dropdown hover
-  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false); // State for mobile dropdown click
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState<{
+    [key: string]: boolean;
+  }>({}); // State for desktop dropdown hover
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState<{
+    [key: string]: boolean;
+  }>({}); // State for mobile dropdown click
+  const timeoutRef = useRef<{ [key: string]: NodeJS.Timeout | null }>({});
 
   const navigation = [
-    { name: "How It Works", href: "/howitworks", hasDropdown: true },
+    {
+      name: "How It Works",
+      href: "/howitworks",
+      hasDropdown: true,
+      dropdownKey: "howItWorks",
+    },
     { name: "Blogs", href: "/blogs" },
     { name: "About", href: "/about-us" },
-    { name: "Others", href: "/others" },
+    { name: "Others", href: "#", hasDropdown: true, dropdownKey: "others" }, // Changed Others to have a dropdown
   ];
 
-  const dropdownItems = [
+  const howItWorksDropdownItems = [
     {
       icon: Package,
       title: "For Senders",
@@ -45,17 +58,54 @@ export default function Navbar() {
     },
   ];
 
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    setIsDesktopDropdownOpen(true);
+  const othersDropdownItems = [
+    {
+      icon: FileText,
+      title: "Privacy Policy",
+      description: "Understand how we protect your data",
+      href: "/privacy-policy",
+    },
+    {
+      icon: BookOpen,
+      title: "Terms & Conditions",
+      description: "Our service agreements and guidelines",
+      href: "/terms-and-conditions",
+    },
+    {
+      icon: Shield, // Reusing Shield for Refund Policy, or could use a new icon if available
+      title: "Refund Policy",
+      description: "Information on refunds and cancellations",
+      href: "/refund-policy",
+    },
+    {
+      icon: Briefcase,
+      title: "Careers",
+      description: "Join our team and build the future",
+      href: "/careers",
+    },
+  ];
+
+  const getDropdownItems = (key: string) => {
+    if (key === "howItWorks") return howItWorksDropdownItems;
+    if (key === "others") return othersDropdownItems;
+    return [];
   };
 
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setIsDesktopDropdownOpen(false);
+  const handleMouseEnter = (key: string) => {
+    if (timeoutRef.current[key]) {
+      clearTimeout(timeoutRef.current[key]!);
+    }
+    setIsDesktopDropdownOpen((prev) => ({ ...prev, [key]: true }));
+  };
+
+  const handleMouseLeave = (key: string) => {
+    timeoutRef.current[key] = setTimeout(() => {
+      setIsDesktopDropdownOpen((prev) => ({ ...prev, [key]: false }));
     }, 150);
+  };
+
+  const toggleMobileDropdown = (key: string) => {
+    setIsMobileDropdownOpen((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   return (
@@ -66,7 +116,7 @@ export default function Navbar() {
           <div>
             <Link
               href="/"
-              className="text-xl font-bold tracking-tighter text-gray-800 hover:text-[#133bb7] transition-colors"
+              className="text-xl font-bold tracking-tighter text-gray-800 hover:text-[#133bbf] transition-colors"
             >
               <Image
                 src="/delematelogo.png"
@@ -77,7 +127,6 @@ export default function Navbar() {
               />
             </Link>
           </div>
-
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navigation.map((nav) => (
@@ -85,75 +134,77 @@ export default function Navbar() {
                 {nav.hasDropdown ? (
                   <div
                     className="relative"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
+                    onMouseEnter={() => handleMouseEnter(nav.dropdownKey!)}
+                    onMouseLeave={() => handleMouseLeave(nav.dropdownKey!)}
                   >
-                    <button className="flex items-center text-sm font-medium tracking-tight text-gray-700 hover:text-[#133bb7] transition-colors relative group">
+                    <button className="flex items-center text-sm font-medium tracking-tight text-gray-700 hover:text-[#133bbf] transition-colors relative group">
                       {nav.name}
                       <ChevronDown
                         className={`ml-1 h-4 w-4 transition-transform ${
-                          isDesktopDropdownOpen ? "rotate-180" : ""
+                          isDesktopDropdownOpen[nav.dropdownKey!]
+                            ? "rotate-180"
+                            : ""
                         }`}
                       />
-                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#133bb7] transition-all group-hover:w-full"></span>
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#133bbf] transition-all group-hover:w-full"></span>
                     </button>
                     {/* Dropdown Menu */}
-                    {isDesktopDropdownOpen && (
+                    {isDesktopDropdownOpen[nav.dropdownKey!] && (
                       <div
                         className="absolute top-full left-0 mt-1 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 py-4 z-50"
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
+                        onMouseEnter={() => handleMouseEnter(nav.dropdownKey!)}
+                        onMouseLeave={() => handleMouseLeave(nav.dropdownKey!)}
                       >
-                        {dropdownItems.map((item, index) => {
-                          const Icon = item.icon;
-                          return (
-                            <Link
-                              key={index}
-                              href={item.href}
-                              className="flex items-start px-6 py-4 hover:bg-gray-50 transition-colors group"
-                            >
-                              <div className="flex-shrink-0 mr-4">
-                                <div className="w-10 h-10 bg-[#133bb7]/10 rounded-full flex items-center justify-center group-hover:bg-[#133bb7]/20 transition-colors">
-                                  <Icon className="w-5 h-5 text-[#133bb7]" />
+                        {getDropdownItems(nav.dropdownKey!).map(
+                          (item, index) => {
+                            const Icon = item.icon;
+                            return (
+                              <Link
+                                key={index}
+                                href={item.href}
+                                className="flex items-start px-6 py-4 hover:bg-gray-50 transition-colors group"
+                              >
+                                <div className="flex-shrink-0 mr-4">
+                                  <div className="w-10 h-10 bg-[#133bbf]/10 rounded-full flex items-center justify-center group-hover:bg-[#133bbf]/20 transition-colors">
+                                    <Icon className="w-5 h-5 text-[#133bbf]" />
+                                  </div>
                                 </div>
-                              </div>
-                              <div>
-                                <h3 className="font-semibold text-gray-900 mb-1">
-                                  {item.title}
-                                </h3>
-                                <p className="text-sm text-gray-600 leading-relaxed">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </Link>
-                          );
-                        })}
+                                <div>
+                                  <h3 className="font-semibold text-gray-900 mb-1">
+                                    {item.title}
+                                  </h3>
+                                  <p className="text-sm text-gray-600 leading-relaxed">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </Link>
+                            );
+                          }
+                        )}
                       </div>
                     )}
                   </div>
                 ) : (
                   <Link
-                    className="text-sm font-medium tracking-tight text-gray-700 hover:text-[#133bb7] transition-colors relative group"
+                    className="text-sm font-medium tracking-tight text-gray-700 hover:text-[#133bbf] transition-colors relative group"
                     href={nav.href}
                   >
                     {nav.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#133bb7] transition-all group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#133bbf] transition-all group-hover:w-full"></span>
                   </Link>
                 )}
               </div>
             ))}
           </div>
-
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center gap-4">
             <Link
-              href="/signup"
-              className="bg-[#133bbf] hover:from-[#133bb7]/80 hover:to-[#7043dc]/80 text-white px-6 py-2.5 rounded-full text-sm font-medium tracking-tight shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all transform hover:scale-105"
+              href="/contact-us" // Changed to /contact as per previous context
+              className="bg-[#133bbf] hover:from-[#133bbf]/80 hover:to-[#7043dc]/80 text-white px-6 py-2.5 rounded-full text-sm font-medium tracking-tight shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all transform hover:scale-105"
             >
               Contact Us
             </Link>
           </div>
-
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -163,7 +214,6 @@ export default function Navbar() {
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </nav>
-
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden border-t border-gray-200/60 bg-white/95 backdrop-blur-xl rounded-b-2xl py-4">
@@ -173,48 +223,50 @@ export default function Navbar() {
                   {nav.hasDropdown ? (
                     <div className="space-y-2">
                       <button
-                        className="flex items-center justify-between w-full text-sm font-medium text-gray-700 hover:text-[#133bb7] transition-colors"
-                        onClick={() =>
-                          setIsMobileDropdownOpen(!isMobileDropdownOpen)
-                        }
-                        aria-expanded={isMobileDropdownOpen}
+                        className="flex items-center justify-between w-full text-sm font-medium text-gray-700 hover:text-[#133bbf] transition-colors"
+                        onClick={() => toggleMobileDropdown(nav.dropdownKey!)}
+                        aria-expanded={isMobileDropdownOpen[nav.dropdownKey!]}
                       >
                         {nav.name}
                         <ChevronDown
                           className={`ml-1 h-4 w-4 transition-transform ${
-                            isMobileDropdownOpen ? "rotate-180" : ""
+                            isMobileDropdownOpen[nav.dropdownKey!]
+                              ? "rotate-180"
+                              : ""
                           }`}
                         />
                       </button>
-                      {isMobileDropdownOpen && (
+                      {isMobileDropdownOpen[nav.dropdownKey!] && (
                         <div className="pl-4 space-y-3 pt-2">
-                          {dropdownItems.map((item, index) => {
-                            const Icon = item.icon;
-                            return (
-                              <Link
-                                key={index}
-                                href={item.href}
-                                className="flex items-start gap-3 text-sm text-gray-600 hover:text-[#133bb7] transition-colors"
-                                onClick={() => setIsOpen(false)}
-                              >
-                                <Icon className="w-4 h-4 mt-0.5 text-[#133bb7]" />
-                                <div>
-                                  <div className="font-medium">
-                                    {item.title}
+                          {getDropdownItems(nav.dropdownKey!).map(
+                            (item, index) => {
+                              const Icon = item.icon;
+                              return (
+                                <Link
+                                  key={index}
+                                  href={item.href}
+                                  className="flex items-start gap-3 text-sm text-gray-600 hover:text-[#133bbf] transition-colors"
+                                  onClick={() => setIsOpen(false)}
+                                >
+                                  <Icon className="w-4 h-4 mt-0.5 text-[#133bbf]" />
+                                  <div>
+                                    <div className="font-medium">
+                                      {item.title}
+                                    </div>
+                                    <div className="text-xs text-gray-500">
+                                      {item.description}
+                                    </div>
                                   </div>
-                                  <div className="text-xs text-gray-500">
-                                    {item.description}
-                                  </div>
-                                </div>
-                              </Link>
-                            );
-                          })}
+                                </Link>
+                              );
+                            }
+                          )}
                         </div>
                       )}
                     </div>
                   ) : (
                     <Link
-                      className="block text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+                      className="block text-sm font-medium text-gray-700 hover:text-[#133bbf] transition-colors"
                       href={nav.href}
                       onClick={() => setIsOpen(false)}
                     >
@@ -225,18 +277,11 @@ export default function Navbar() {
               ))}
               <div className="pt-4 border-t border-gray-200/60 space-y-3">
                 <Link
-                  href="/login"
-                  className="block text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
+                  href="/contact" // Changed to /contact as per previous context
+                  className="block bg-gradient-to-r from-[#133bbf] to-[#7043dc] text-white px-6 py-2.5 rounded-full text-sm font-medium text-center shadow-lg shadow-blue-500/25"
                   onClick={() => setIsOpen(false)}
                 >
-                  Login
-                </Link>
-                <Link
-                  href="/signup"
-                  className="block bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2.5 rounded-full text-sm font-medium text-center shadow-lg shadow-blue-500/25"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Get Started
+                  Contact Us
                 </Link>
               </div>
             </div>

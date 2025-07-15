@@ -65,19 +65,35 @@ export default function AboutUs() {
     },
   ];
 
+  const fadeIn = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" },
+  };
+
+  const staggerContainer = {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section - With dots and text animations */}
-      <section className="flex flex-col items-center justify-center gap-y-8 min-h-[calc(100vh-200px)] relative px-4 overflow-hidden">
+      {/* Hero Section - Enhanced with more dynamic elements */}
+      <section className="flex flex-col items-center justify-center gap-y-8 min-h-[calc(100vh-100px)] relative px-4 py-20 overflow-hidden">
         {/* Minimal Dots Background */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-[#133bb7]/40 rounded-full animate-bounce delay-300"></div>
+          <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-[#133bbf]/40 rounded-full animate-bounce delay-300"></div>
           <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-[#7043dc]/50 rounded-full animate-bounce delay-700"></div>
-          <div className="absolute bottom-1/3 left-1/3 w-4 h-4 bg-[#133bb7]/30 rounded-full animate-bounce delay-1000"></div>
-          <div className="absolute top-1/5 right-1/5 w-2.5 h-2.5 bg-[#133bb7]/35 rounded-full animate-bounce delay-500"></div>
+          <div className="absolute bottom-1/3 left-1/3 w-4 h-4 bg-[#133bbf]/30 rounded-full animate-bounce delay-1000"></div>
+          <div className="absolute top-1/5 right-1/5 w-2.5 h-2.5 bg-[#133bbf]/35 rounded-full animate-bounce delay-500"></div>
           <div className="absolute bottom-1/5 left-1/5 w-3.5 h-3.5 bg-[#7043dc]/40 rounded-full animate-bounce delay-1200"></div>
-          <div className="absolute top-2/3 right-1/4 w-2 h-2 bg-[#133bb7]/45 rounded-full animate-bounce delay-800"></div>
-          <div className="absolute bottom-1/4 right-1/5 w-3 h-3 bg-[#133bb7]/35 rounded-full animate-bounce delay-400"></div>
+          <div className="absolute top-2/3 right-1/4 w-2 h-2 bg-[#133bbf]/45 rounded-full animate-bounce delay-800"></div>
+          <div className="absolute bottom-1/4 right-1/5 w-3 h-3 bg-[#133bbf]/35 rounded-full animate-bounce delay-400"></div>
         </div>
 
         {/* Status Badge with animation */}
@@ -87,25 +103,25 @@ export default function AboutUs() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="bg-gradient-to-r from-[#133bb7]/20 to-[#7043dc]/20 border border-[#133bb7]/10 px-6 py-3 rounded-full shadow-lg shadow-blue-500/10 flex items-center gap-2 backdrop-blur-sm">
-            <Users className="w-4 h-4 text-[#133bb7]" />
-            <span className="text-sm font-medium text-[#133bb7]">
+          <div className="bg-gradient-to-r from-[#133bbf]/20 to-[#7043dc]/20 border border-[#133bbf]/10 px-6 py-3 rounded-full shadow-lg shadow-blue-500/10 flex items-center gap-2 backdrop-blur-sm">
+            <Users className="w-4 h-4 text-[#133bbf]" />
+            <span className="text-sm font-medium text-[#133bbf]">
               About DeleMate 👋
             </span>
           </div>
         </motion.div>
 
-        <div className="text-center flex items-center flex-col gap-y-4 relative z-10">
+        <div className="text-center flex items-center flex-col gap-y-6 relative z-10 max-w-5xl mx-auto">
           {/* Animated Main Heading */}
           <motion.h1
-            className="text-[56px] font-bold text-gray-800 tracking-tighter leading-16 max-w-4xl z-20 relative"
+            className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-gray-900 tracking-tighter leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Welcome to{" "}
             <motion.span
-              className="text-[62px] text-[#133bb7]"
+              className="text-transparent bg-clip-text bg-gradient-to-r from-[#133bbf] to-[#7043dc]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -115,30 +131,25 @@ export default function AboutUs() {
           </motion.h1>
 
           {/* Animated Subtitle */}
-          <motion.div
-            className="text-center z-20 relative w-[70%]"
+          <motion.p
+            className="text-lg sm:text-xl text-gray-700 leading-relaxed max-w-3xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h2
-              className="text-md text-gray-800/70 leading-6 tracking-normal font-outfit"
-              style={{ fontFamily: "var(--font-outfit)" }}
-            >
-              DeleMate is an innovative peer-to-peer delivery platform designed
-              to make parcel delivery easier, faster, and more affordable. We
-              connect travelers with people who need to send parcels, offering a
-              convenient solution for long-distance deliveries at a fraction of
-              the cost of traditional courier services.
-            </h2>
-          </motion.div>
+            DeleMate is an innovative peer-to-peer delivery platform designed to
+            make parcel delivery easier, faster, and more affordable. We connect
+            travelers with people who need to send parcels, offering a
+            convenient solution for long-distance deliveries at a fraction of
+            the cost of traditional courier services.
+          </motion.p>
 
           {/* Animated Feature Pills */}
           <motion.div
-            className="flex flex-wrap justify-center gap-4 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-wrap justify-center gap-4 mt-4"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
           >
             {[
               { icon: Target, text: "Affordable" },
@@ -148,16 +159,12 @@ export default function AboutUs() {
               <motion.div
                 key={index}
                 className="flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-gray-200/60 px-4 py-2 rounded-full shadow-sm"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
+                variants={fadeIn}
+                transition={{ delay: 0.8 + index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <feature.icon className="w-4 h-4 text-[#133bb7]" />
-                <span
-                  className="text-sm font-medium text-gray-700"
-                  style={{ fontFamily: "var(--font-outfit)" }}
-                >
+                <feature.icon className="w-4 h-4 text-[#133bbf]" />
+                <span className="text-sm font-medium text-gray-700">
                   {feature.text}
                 </span>
               </motion.div>
@@ -166,74 +173,66 @@ export default function AboutUs() {
 
           {/* Animated Mission Badge */}
           <motion.div
-            className="bg-white/40 mt-4 border border-gray-300 px-4 py-1 rounded-4xl backdrop-blur-2xl flex items-center gap-x-2 shadow-xl"
+            className="bg-white/40 mt-6 border border-gray-300 px-5 py-2 rounded-full backdrop-blur-2xl flex items-center gap-x-2 shadow-xl"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
             whileHover={{ scale: 1.05 }}
           >
-            <Target className="w-4 h-4 text-[#133bb7]" />
-            <h2
-              className="text-[13px] font-light text-gray-600"
-              style={{ fontFamily: "var(--font-outfit)" }}
-            >
+            <Target className="w-4 h-4 text-[#133bbf]" />
+            <h2 className="text-sm font-light text-gray-600">
               Learn everything about us
             </h2>
           </motion.div>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="bg-[#133bbf] py-16">
-        <div className="max-w-6xl mx-auto px-4">
+      {/* Mission Section - Bold and impactful */}
+      <section className="bg-[#133bbf] py-20 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 text-center">
           <motion.div
-            className="flex items-center justify-center mb-4 py-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="flex flex-col items-center">
-              <motion.div
-                className="flex items-center gap-x-2 bg-[#fff]/80 px-2 py-1 rounded-md text-[#000]"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <Target />
-                <p className="font-light text-[16px]">Our Mission</p>
-              </motion.div>
-              <motion.div
-                className="text-[48px] text-[#fff] font-semibold tracking-tighter text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                Create a{" "}
-                <span className="text-[#ffb434] text-[56px]">Faster</span> &
-                More Efficient Delivery Network
-              </motion.div>
-              <motion.p
-                className="text-[18px] text-gray-300/80 text-center font-normal max-w-3xl"
-                style={{ fontFamily: "var(--font-outfit)" }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                Our mission is simple: to create a faster, more affordable, and
-                more efficient delivery network by leveraging the power of
-                technology and the shared economy.
-              </motion.p>
-            </div>
+            <motion.div
+              className="inline-flex items-center gap-x-2 bg-white/80 px-3 py-1.5 rounded-md text-gray-900 mb-4"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <Target className="w-4 h-4" />
+              <p className="font-medium text-sm">Our Mission</p>
+            </motion.div>
+            <motion.h2
+              className="text-4xl sm:text-5xl md:text-6xl text-white font-extrabold tracking-tighter leading-tight mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              Create a <span className="text-[#ffb434]">Faster</span> & More
+              Efficient Delivery Network
+            </motion.h2>
+            <motion.p
+              className="text-lg sm:text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              Our mission is simple: to create a faster, more affordable, and
+              more efficient delivery network by leveraging the power of
+              technology and the shared economy.
+            </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-gray-50">
+      {/* Why Choose Us Section - Grid with animated cards */}
+      <section className="py-20 sm:py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -242,49 +241,49 @@ export default function AboutUs() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-[48px] tracking-tighter font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tighter mb-6">
               Why Choose DeleMate?
             </h2>
-            <p
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
-              style={{ fontFamily: "var(--font-outfit)" }}
-            >
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Discover what makes DeleMate the perfect choice for your delivery
               needs
             </p>
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {whyChooseUs.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
                 <motion.div
                   key={index}
-                  className="bg-white hover:bg-gray-50 rounded-2xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer group"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
+                  className="bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+                  variants={fadeIn}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
                 >
-                  <div className="flex flex-col items-center text-center">
-                    <div className="bg-[#133bbf]/10 rounded-full p-4 mb-4 group-hover:bg-[#133bbf]/20 transition-colors">
-                      <Icon className="w-8 h-8 text-[#133bbf]" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2 text-[#133bbf]">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm opacity-70">{benefit.description}</p>
+                  <div className="bg-[#133bbf]/10 rounded-full p-4 mb-6 w-16 h-16 flex items-center justify-center mx-auto group-hover:bg-[#133bbf]/20 transition-colors">
+                    <Icon className="w-8 h-8 text-[#133bbf]" />
                   </div>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-base text-gray-600 leading-relaxed">
+                    {benefit.description}
+                  </p>
                 </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Our Story */}
-      <section className="py-20 bg-white">
+      {/* Our Story Section - Dynamic layout with image/stats */}
+      <section className="py-20 sm:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -293,65 +292,68 @@ export default function AboutUs() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-[48px] tracking-tighter font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tighter mb-6">
               Our Story
             </h2>
-            <p
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
-              style={{ fontFamily: "var(--font-outfit)" }}
-            >
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               How DeleMate came to life and our journey so far
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <motion.div
-              className="space-y-6"
+              className="space-y-8"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="bg-white hover:bg-gray-50 rounded-2xl p-6 border border-gray-100 transition-all duration-300">
-                <p className="text-gray-700 leading-relaxed">
+              <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-lg">
+                <p className="text-lg text-gray-700 leading-relaxed">
                   DeleMate was founded by a group of passionate individuals who
                   saw an opportunity to change the way deliveries are made. With
                   backgrounds in technology, business, and logistics, we came
-                  together with one common goal.
+                  together with one common goal: to revolutionize parcel
+                  delivery.
                 </p>
               </div>
-              <div className="bg-white hover:bg-gray-50 rounded-2xl p-6 border border-gray-100 transition-all duration-300">
-                <p className="text-gray-700 leading-relaxed">
+              <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-lg">
+                <p className="text-lg text-gray-700 leading-relaxed">
                   We understand that sending a parcel can sometimes be a hassle.
                   Our solution is designed to make the process smooth, fast, and
-                  affordable, all while connecting people across distances.
+                  affordable, all while connecting people across distances and
+                  fostering a community of trusted users.
                 </p>
               </div>
             </motion.div>
-
             <motion.div
-              className="bg-gradient-to-br from-[#133bbf] to-[#7043dc] rounded-2xl p-8 text-white"
+              className="bg-gradient-to-br from-[#133bbf] to-[#7043dc] rounded-2xl p-10 text-white shadow-xl"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">10K+</div>
-                  <div className="text-white/80 text-sm">Happy Users</div>
+                  <div className="text-4xl sm:text-5xl font-bold mb-2">
+                    10K+
+                  </div>
+                  <div className="text-white/80 text-base">Happy Users</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">50K+</div>
-                  <div className="text-white/80 text-sm">Deliveries</div>
+                  <div className="text-4xl sm:text-5xl font-bold mb-2">
+                    50K+
+                  </div>
+                  <div className="text-white/80 text-base">Deliveries</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">100+</div>
-                  <div className="text-white/80 text-sm">Cities</div>
+                  <div className="text-4xl sm:text-5xl font-bold mb-2">
+                    100+
+                  </div>
+                  <div className="text-white/80 text-base">Cities</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">99%</div>
-                  <div className="text-white/80 text-sm">Success Rate</div>
+                  <div className="text-4xl sm:text-5xl font-bold mb-2">99%</div>
+                  <div className="text-white/80 text-base">Success Rate</div>
                 </div>
               </div>
             </motion.div>
@@ -359,8 +361,8 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Our Values */}
-      <section className="py-20 bg-gray-50">
+      {/* Our Values Section - Grid with animated cards */}
+      <section className="py-20 sm:py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
           <motion.div
             className="text-center mb-16"
@@ -369,74 +371,72 @@ export default function AboutUs() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-[48px] tracking-tighter font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tighter mb-6">
               Our Values
             </h2>
-            <p
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
-              style={{ fontFamily: "var(--font-outfit)" }}
-            >
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               The principles that guide everything we do at DeleMate
             </p>
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {values.map((value, index) => {
               const Icon = value.icon;
               return (
                 <motion.div
                   key={index}
-                  className="bg-white hover:bg-gray-50 rounded-2xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer group text-center"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
+                  className="bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
+                  variants={fadeIn}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -8 }}
                 >
-                  <div className="bg-[#133bbf]/10 rounded-full p-4 mb-4 group-hover:bg-[#133bbf]/20 transition-colors w-16 h-16 flex items-center justify-center mx-auto">
+                  <div className="bg-[#133bbf]/10 rounded-full p-4 mb-6 w-16 h-16 flex items-center justify-center mx-auto group-hover:bg-[#133bbf]/20 transition-colors">
                     <Icon className="w-8 h-8 text-[#133bbf]" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-[#133bbf]">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">
                     {value.title}
                   </h3>
-                  <p className="text-sm opacity-70">{value.description}</p>
+                  <p className="text-base text-gray-600 leading-relaxed">
+                    {value.description}
+                  </p>
                 </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* CTA Section - Clean white background */}
-      <section className="bg-white py-16 border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-4">
+      {/* CTA Section - Clean white background with strong message */}
+      <section className="bg-white py-20 sm:py-24 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 text-center">
           <motion.div
-            className="flex items-center justify-center mb-4 py-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="flex flex-col items-center">
-              <div className="flex items-center gap-x-2 bg-[#133bbf]/10 px-4 py-2 rounded-full text-[#133bbf] mb-6 border border-[#133bbf]/20">
-                <Star className="w-4 h-4" />
-                <p className="font-medium text-[16px]">Our Future</p>
-              </div>
-              <div className="text-[48px] text-gray-900 font-semibold tracking-tighter text-center">
-                Thank You for Choosing{" "}
-                <span className="text-[#133bbf] text-[56px]">DeleMate</span>
-              </div>
-              <p
-                className="text-[18px] text-gray-600 text-center font-normal mb-8 max-w-3xl"
-                style={{ fontFamily: "var(--font-outfit)" }}
-              >
-                We are continuously improving DeleMate, expanding our network,
-                and building new features to enhance the user experience. Our
-                goal is to make DeleMate the go-to platform for peer-to-peer
-                deliveries, offering a fast, affordable, and reliable service.
-                We're excited to be part of your delivery journey!
-              </p>
+            <div className="inline-flex items-center gap-x-2 bg-[#133bbf]/10 px-4 py-2 rounded-full text-[#133bbf] mb-6 border border-[#133bbf]/20">
+              <Star className="w-4 h-4" />
+              <p className="font-medium text-base">Our Future</p>
             </div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl text-gray-900 font-extrabold tracking-tighter leading-tight mb-6">
+              Thank You for Choosing{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#133bbf] to-[#7043dc]">
+                DeleMate
+              </span>
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-10 max-w-3xl mx-auto">
+              We are continuously improving DeleMate, expanding our network, and
+              building new features to enhance the user experience. Our goal is
+              to make DeleMate the go-to platform for peer-to-peer deliveries,
+              offering a fast, affordable, and reliable service. We're excited
+              to be part of your delivery journey!
+            </p>
           </motion.div>
         </div>
       </section>

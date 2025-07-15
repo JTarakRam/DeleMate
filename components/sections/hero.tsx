@@ -1,4 +1,5 @@
 "use client";
+
 import { IoLogoGooglePlaystore } from "react-icons/io5";
 import { FaApple } from "react-icons/fa";
 import Image from "next/image";
@@ -9,10 +10,12 @@ import { Zap } from "lucide-react";
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
   const controls = useAnimation();
+
   useEffect(() => {
     setIsVisible(true);
     controls.start("visible");
   }, [controls]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -23,6 +26,7 @@ export default function HeroSection() {
       },
     },
   };
+
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -34,6 +38,7 @@ export default function HeroSection() {
       },
     },
   };
+
   const floatingVariants = {
     animate: {
       y: [-10, 10, -10],
@@ -44,8 +49,10 @@ export default function HeroSection() {
       },
     },
   };
+
   return (
     <section className="flex flex-col items-center justify-center gap-y-8 min-h-[calc(100vh-300px)] relative px-4 sm:px-6 lg:px-8">
+      {/* Live banner - already animated */}
       <motion.div className="flex justify-center" variants={itemVariants}>
         <div className="bg-gradient-to-r from-[#133bb7]/20 to-[#7043dc]/20 border border-[#133bb7]/10 px-4 py-2 sm:px-6 sm:py-3 rounded-full shadow-lg shadow-blue-500/10 flex items-center gap-2">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -54,9 +61,20 @@ export default function HeroSection() {
           </span>
         </div>
       </motion.div>
-      <div className="text-center flex items-center flex-col gap-y-4 relative">
-        {/* Left Parcel Image */}
-        <div className="absolute -left-[150px] top-1/2 transform -translate-y-1/2 z-10 hidden md:block lg:-left-[250px] xl:-left-[250px]">
+
+      {/* Main content block with staggered animations */}
+      <motion.div
+        className="text-center flex items-center flex-col gap-y-4 relative"
+        variants={containerVariants}
+        initial="hidden"
+        animate={controls}
+      >
+        {/* Left Parcel Image with floating animation */}
+        <motion.div
+          className="absolute -left-[150px] top-1/2 transform -translate-y-1/2 z-10 hidden md:block lg:-left-[250px] xl:-left-[250px]"
+          variants={floatingVariants}
+          animate="animate"
+        >
           <Image
             src="/fromyou.png"
             alt="Parcel from you"
@@ -64,9 +82,13 @@ export default function HeroSection() {
             height={200}
             className="drop-shadow-xl lg:w-[250px] lg:h-[250px] xl:w-[350px] xl:h-[350px]"
           />
-        </div>
-        {/* Right Parcel Image */}
-        <div className="absolute -right-[150px] top-1/2 transform -translate-y-1/2 z-10 hidden md:block lg:-right-[250px] xl:-right-[250px]">
+        </motion.div>
+        {/* Right Parcel Image with floating animation */}
+        <motion.div
+          className="absolute -right-[150px] top-1/2 transform -translate-y-1/2 z-10 hidden md:block lg:-right-[250px] xl:-right-[250px]"
+          variants={floatingVariants}
+          animate="animate"
+        >
           <Image
             src="/anywhere.png"
             alt="Parcel to destination"
@@ -74,7 +96,8 @@ export default function HeroSection() {
             height={200}
             className="drop-shadow-xl lg:w-[250px] lg:h-[250px] xl:w-[350px] xl:h-[350px]"
           />
-        </div>
+        </motion.div>
+
         {/* Glowing Rope-like Curved Line - Behind everything and moved down */}
         <svg
           className="absolute top-[90%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 w-full max-w-[1200px] h-auto hidden lg:block"
@@ -132,14 +155,24 @@ export default function HeroSection() {
             stroke="none"
           />
         </svg>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[56px] font-bold text-gray-800 tracking-tighter leading-tight sm:leading-16 max-w-4xl z-20 relative">
+
+        {/* Main Heading with animation */}
+        <motion.h1
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-[56px] font-bold text-gray-800 tracking-tighter leading-tight sm:leading-16 max-w-4xl z-20 relative"
+          variants={itemVariants}
+        >
           Send your{" "}
           <span className="text-5xl sm:text-6xl md:text-7xl lg:text-[62px] text-[#133bb7]">
-            Parcels
+            Parcels{" "}
           </span>{" "}
           seamlessly <br className="hidden sm:inline" /> with DeleMate.
-        </h1>
-        <div className="text-center z-20 relative w-full sm:w-[90%] md:w-[80%] lg:w-[70%] px-4">
+        </motion.h1>
+
+        {/* Description with animation */}
+        <motion.div
+          className="text-center z-20 relative w-full sm:w-[90%] md:w-[80%] lg:w-[70%] px-4"
+          variants={itemVariants}
+        >
           <h2
             className="text-sm sm:text-md text-gray-800/70 leading-6 tracking-normal font-outfit"
             style={{ fontFamily: "var(--font-outfit)" }}
@@ -147,8 +180,13 @@ export default function HeroSection() {
             DeleMate makes sending packages easier and cheaper than ever before.
             Just sign up and tell us where you want your package to go.
           </h2>
-        </div>
-        <div className="bg-white/40 mt-4 border border-gray-300 px-3 py-1 rounded-4xl backdrop-blur-2xl flex items-center gap-x-1 sm:gap-x-2 shadow-xl">
+        </motion.div>
+
+        {/* Discount banner with animation */}
+        <motion.div
+          className="bg-white/40 mt-4 border border-gray-300 px-3 py-1 rounded-4xl backdrop-blur-2xl flex items-center gap-x-1 sm:gap-x-2 shadow-xl"
+          variants={itemVariants}
+        >
           <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-[#133bb7]" />
           <h2
             className="text-[11px] sm:text-[13px] font-light text-gray-600"
@@ -156,18 +194,22 @@ export default function HeroSection() {
           >
             Get upto 60% off on your first order
           </h2>
-        </div>
-        {/* Download Buttons - Above the rope */}
-        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-4 z-30 relative">
+        </motion.div>
+
+        {/* Download Buttons - now always in a row and centered, with animation */}
+        <motion.div
+          className="flex flex-row items-center gap-3 sm:gap-4 mt-4 z-30 relative justify-center"
+          variants={itemVariants}
+        >
           {/* Google Play Button */}
           <a
             href="#"
-            className="flex items-center gap-2 sm:gap-3 bg-black hover:bg-gray-800 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl transition-colors shadow-lg hover:shadow-xl w-full sm:w-auto justify-center"
+            className="flex items-center gap-0 sm:gap-3 bg-black hover:bg-gray-800 text-white px-3 py-2 sm:px-6 sm:py-3 rounded-xl transition-colors shadow-lg hover:shadow-xl w-full sm:w-auto justify-center"
           >
             <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-md flex items-center justify-center">
               <IoLogoGooglePlaystore className="w-8 h-8 sm:w-10 sm:h-10 text-white fill-white" />
             </div>
-            <div className="text-left">
+            <div className="text-left hidden sm:block">
               <div
                 className="text-xs text-gray-300"
                 style={{ fontFamily: "var(--font-outfit)" }}
@@ -185,12 +227,12 @@ export default function HeroSection() {
           {/* App Store Button */}
           <a
             href="#"
-            className="flex items-center gap-2 sm:gap-3 bg-black hover:bg-gray-800 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-xl transition-colors shadow-lg hover:shadow-xl w-full sm:w-auto justify-center"
+            className="flex items-center gap-0 sm:gap-3 bg-black hover:bg-gray-800 text-white px-3 py-2 sm:px-6 sm:py-3 rounded-xl transition-colors shadow-lg hover:shadow-xl w-full sm:w-auto justify-center"
           >
             <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-md flex items-center justify-center">
               <FaApple className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
-            <div className="text-left">
+            <div className="text-left hidden sm:block">
               <div
                 className="text-xs text-gray-300"
                 style={{ fontFamily: "var(--font-outfit)" }}
@@ -205,8 +247,8 @@ export default function HeroSection() {
               </div>
             </div>
           </a>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

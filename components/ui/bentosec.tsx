@@ -3,16 +3,16 @@
 export default function BentoSection() {
   return (
     <>
-      <div className="flex flex-col items-center justify-center  gap-y-6 mb-16 px-4 sm:px-6">
+      <div className="flex flex-col items-center justify-center gap-y-6 mb-16 px-4 sm:px-6">
         <div className="text-center">
           <h2 className="text-3xl sm:text-4xl md:text-[48px] font-semibold tracking-tighter leading-tight sm:leading-16">
             Send With{" "}
-            <span className="text-[#133bb7] italic text-4xl sm:text-5xl md:text-[52px]">
+            <span className="text-[#133bbf] italic text-4xl sm:text-5xl md:text-[52px]">
               heart
             </span>{" "}
             <br />
             Travel with{" "}
-            <span className="text-[#133bb7] italic text-4xl sm:text-5xl md:text-[52px]">
+            <span className="text-[#133bbf] italic text-4xl sm:text-5xl md:text-[52px]">
               Purpose
             </span>
           </h2>
@@ -20,8 +20,8 @@ export default function BentoSection() {
         <div className="flex flex-col items-center justify-center gap-4 w-full">
           {/* First row of cards */}
           <div className="flex flex-col lg:flex-row justify-center gap-4 w-full">
-            {/* Live Tracking - Large purple card with world map animation */}
-            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[700px] h-[300px] sm:h-[350px] bg-[#7043dc] rounded-4xl p-6 sm:p-8 text-white hover:shadow-lg transition-all duration-300 group relative overflow-hidden flex-shrink-0">
+            {/* Live Tracking - Green to Blue gradient */}
+            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[700px] h-[300px] sm:h-[350px] bg-gradient-to-br from-[#4CAF50] to-[#2196F3] rounded-4xl p-6 sm:p-8 text-white hover:shadow-lg transition-all duration-300 group relative overflow-hidden flex-shrink-0">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between h-full relative z-10">
                 <div className="flex-1 pr-0 sm:pr-4">
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">
@@ -116,8 +116,8 @@ export default function BentoSection() {
                 </div>
               </div>
             </div>
-            {/* KYC Verification - Medium yellow card with large document scanner */}
-            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[480px] h-[300px] sm:h-[350px] bg-[#ffb434] rounded-4xl p-6 sm:p-8 text-gray-800 hover:shadow-lg transition-all duration-300 group relative overflow-hidden flex-shrink-0">
+            {/* KYC Verification - Gold to Orange gradient */}
+            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[480px] h-[300px] sm:h-[350px] bg-gradient-to-br from-[#FFD700] to-[#FF8C00] rounded-4xl p-6 sm:p-8 text-gray-800 hover:shadow-lg transition-all duration-300 group relative overflow-hidden flex-shrink-0">
               <div className="flex flex-col h-full justify-between relative z-10">
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">
@@ -165,8 +165,8 @@ export default function BentoSection() {
           </div>
           {/* Second row of cards */}
           <div className="flex flex-col lg:flex-row justify-center gap-4 w-full">
-            {/* Fast & Affordable - Medium blue card with rocket animation */}
-            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[480px] h-[300px] sm:h-[350px] bg-[#133bb7] rounded-4xl p-6 sm:p-8 text-white hover:shadow-lg transition-all duration-300 group relative overflow-hidden flex-shrink-0">
+            {/* Fast & Affordable - Blue to Cyan gradient */}
+            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[480px] h-[300px] sm:h-[350px] bg-gradient-to-br from-[#00C6FF] to-[#0072FF] rounded-4xl p-6 sm:p-8 text-white hover:shadow-lg transition-all duration-300 group relative overflow-hidden flex-shrink-0">
               <div className="flex flex-col h-full justify-between relative z-10">
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">
@@ -294,8 +294,8 @@ export default function BentoSection() {
                 </div>
               </div>
             </div>
-            {/* 5 Step Verification - Large red card with large progress wheel */}
-            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[700px] h-[300px] sm:h-[350px] bg-[#ff3659] rounded-4xl p-6 sm:p-8 text-white hover:shadow-lg transition-all duration-300 group relative overflow-hidden flex-shrink-0">
+            {/* 5 Step Verification - Red to Pink gradient */}
+            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[700px] h-[300px] sm:h-[350px] bg-gradient-to-br from-[#FF3659] to-[#FF006E] rounded-4xl p-6 sm:p-8 text-white hover:shadow-lg transition-all duration-300 group relative overflow-hidden flex-shrink-0">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between h-full relative z-10">
                 <div className="flex-1 pr-0 sm:pr-4">
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">

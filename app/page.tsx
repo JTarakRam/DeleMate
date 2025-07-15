@@ -3,9 +3,10 @@ import HeroSection from "@/components/sections/hero";
 import BentoSection from "@/components/ui/bentosec";
 import HowItWorksSection from "@/components/ui/howitworks";
 import TravelOptionsSection from "@/components/ui/rewardscard";
-import TestimonialsSection, { MarqueeDemo } from "@/components/ui/testimonals";
+import { MarqueeDemo } from "@/components/ui/testimonals";
 import CTASection from "@/components/ui/cta";
 import { Marquee } from "@/components/magicui/marquee";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -18,21 +19,14 @@ export default function Home() {
       </div>
       {/* Video instead of image with negative margin to overlap */}
       <div className="flex items-center justify-center -mt-40 sm:-mt-60 mb-8 sm:mb-16 px-4">
-        <video
+        {" "}
+        <Image
           className="rounded-3xl border-4 sm:border-6 border-gray-200 backdrop-blur-2xl shadow-xl w-full max-w-xl sm:max-w-3xl lg:max-w-[950px] h-auto"
-          autoPlay
-          loop
-          muted
-          width={950} // Maintain width for layout
-          height={200} // Maintain height for layout
-        >
-          <source src="/onboardingvideo.mp4" type="video/mp4" />
-          {/* <source
-            src="https://www.w3schools.com/html/mov_bbb.webm"
-            type="video/webm"
-          /> */}
-          Your browser does not support the video tag.
-        </video>
+          src="/mockup.jpg"
+          alt="mockup"
+          width={950}
+          height={200}
+        />{" "}
       </div>
       <BentoSection />
       <HowItWorksSection />
