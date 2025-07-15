@@ -40,7 +40,7 @@ const Footer = () => {
           DeleMate
         </h1>
         <p className="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto">
-          Your Partner in Parcel Delivery.
+          Delievring Trust.
         </p>
       </div>
 
@@ -144,7 +144,7 @@ const Footer = () => {
                   href="tel:+911234567890"
                   className="text-sm text-gray-200 hover:text-white transition-colors"
                 >
-                  +91-1234567890
+                  +91-6305835023
                 </a>
               </li>
             </ul>

@@ -33,8 +33,8 @@ export default function CTASection() {
                       <span className="text-sm text-gray-700">
                         3 Parcels Available
                       </span>
-                      <span className="text-green-600 font-bold">
-                        Mumbai → Pune
+                      <span className="text-green-600 text-[14px] font-bold">
+                        Hyderabad → Bengaluru
                       </span>
                     </div>
                     <div className="flex items-center justify-between bg-blue-50 p-3 rounded-lg">
@@ -103,13 +103,13 @@ export default function CTASection() {
             <div className="grid grid-cols-2 gap-6 mb-8">
               <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl">
                 <div className="text-2xl font-bold text-[#133bbf] mb-1">
-                  10K+
+                  3000+
                 </div>
-                <div className="text-sm text-gray-600">Parcels Sent</div>
+                <div className="text-sm text-gray-600">Users</div>
               </div>
               <div className="text-center p-4 bg-gradient-to-br from-green-50 to-yellow-50 rounded-xl">
                 <div className="text-2xl font-bold text-green-600 mb-1">
-                  24hr
+                  6-8 hr
                 </div>
                 <div className="text-sm text-gray-600">Avg. Delivery Time</div>
               </div>
@@ -127,7 +127,7 @@ export default function CTASection() {
               <div className="flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-500">
                 <div className="flex items-center gap-1">
                   <FaUsers className="text-green-500" />
-                  <span>Trusted by 10,000+ users</span>
+                  <span>Trusted by 3000+ users</span>
                 </div>
                 <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
                 <div className="flex items-center gap-1">

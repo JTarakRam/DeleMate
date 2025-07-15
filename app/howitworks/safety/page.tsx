@@ -17,7 +17,7 @@ export default function Safety() {
   const safetyFeatures = [
     {
       icon: Shield,
-      title: "100% Insured Deliveries",
+      title: "100% Insured Deliveries (Coming Soon)",
       description:
         "Every package is fully insured up to ₹50,000 against loss or damage",
     },

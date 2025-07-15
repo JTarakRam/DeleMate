@@ -335,24 +335,26 @@ export default function AboutUs() {
               <div className="grid grid-cols-2 gap-8">
                 <div className="text-center">
                   <div className="text-4xl sm:text-5xl font-bold mb-2">
-                    10K+
+                    3000+
                   </div>
                   <div className="text-white/80 text-base">Happy Users</div>
                 </div>
                 <div className="text-center">
                   <div className="text-4xl sm:text-5xl font-bold mb-2">
-                    50K+
+                    6-8 hr
                   </div>
-                  <div className="text-white/80 text-base">Deliveries</div>
+                  <div className="text-white/80 text-base">
+                    Avg. Delivery Time
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl sm:text-5xl font-bold mb-2">1</div>
+                  <div className="text-white/80 text-base">City</div>
                 </div>
                 <div className="text-center">
                   <div className="text-4xl sm:text-5xl font-bold mb-2">
-                    100+
+                    100%
                   </div>
-                  <div className="text-white/80 text-base">Cities</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl sm:text-5xl font-bold mb-2">99%</div>
                   <div className="text-white/80 text-base">Success Rate</div>
                 </div>
               </div>
