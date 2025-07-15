@@ -32,7 +32,7 @@ export default function Navbar() {
       hasDropdown: true,
       dropdownKey: "howItWorks",
     },
-    { name: "Blogs", href: "/blogs" },
+    { name: "Blogs", href: "/blog" },
     { name: "About", href: "/about-us" },
     { name: "Others", href: "#", hasDropdown: true, dropdownKey: "others" }, // Changed Others to have a dropdown
   ];
