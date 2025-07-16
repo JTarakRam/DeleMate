@@ -7,6 +7,7 @@ import { MarqueeDemo } from "@/components/ui/testimonals";
 import CTASection from "@/components/ui/cta";
 import { Marquee } from "@/components/magicui/marquee";
 import Image from "next/image";
+import FaqSection from "@/components/ui/faq-section";
 
 export default function Home() {
   return (
@@ -33,6 +34,7 @@ export default function Home() {
       <TravelOptionsSection />
       <MarqueeDemo />
       <CTASection />
+      <FaqSection />
       {/* <Footer /> */}
     </div>
   );
