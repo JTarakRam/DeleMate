@@ -1,5 +1,4 @@
 "use client";
-
 export default function BentoSection() {
   return (
     <>
@@ -21,7 +20,7 @@ export default function BentoSection() {
           {/* First row of cards */}
           <div className="flex flex-col lg:flex-row justify-center gap-4 w-full">
             {/* Live Tracking - Green to Blue gradient */}
-            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[700px] h-[300px] sm:h-[350px] bg-gradient-to-br from-[#4CAF50] to-[#2196F3] rounded-4xl p-6 sm:p-8 text-white hover:shadow-lg transition-all duration-300 group relative overflow-hidden flex-shrink-0">
+            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[700px] h-[300px] sm:h-[350px] bg-gradient-to-br from-[#4CAF50] to-[#2196F3] rounded-3xl p-6 sm:p-8 text-white hover:shadow-lg transition-all duration-300 group relative overflow-hidden">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between h-full relative z-10">
                 <div className="flex-1 pr-0 sm:pr-4">
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">
@@ -37,7 +36,7 @@ export default function BentoSection() {
                   </div>
                 </div>
                 {/* Large animated world map with moving package */}
-                <div className="w-full h-auto max-w-[180px] sm:max-w-[256px] sm:h-[192px] relative flex-shrink-0 mt-4 sm:mt-0">
+                <div className="w-full min-h-[150px] sm:max-w-[256px] sm:h-[192px] relative mt-4 sm:mt-0">
                   <svg
                     width="256"
                     height="192"
@@ -117,7 +116,7 @@ export default function BentoSection() {
               </div>
             </div>
             {/* KYC Verification - Gold to Orange gradient */}
-            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[480px] h-[300px] sm:h-[350px] bg-gradient-to-br from-[#FFD700] to-[#FF8C00] rounded-4xl p-6 sm:p-8 text-gray-800 hover:shadow-lg transition-all duration-300 group relative overflow-hidden flex-shrink-0">
+            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[480px] h-[300px] sm:h-[350px] bg-gradient-to-br from-[#FFD700] to-[#FF8C00] rounded-3xl p-6 sm:p-8 text-gray-800 hover:shadow-lg transition-all duration-300 group relative overflow-hidden">
               <div className="flex flex-col h-full justify-between relative z-10">
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">
@@ -166,7 +165,7 @@ export default function BentoSection() {
           {/* Second row of cards */}
           <div className="flex flex-col lg:flex-row justify-center gap-4 w-full">
             {/* Fast & Affordable - Blue to Cyan gradient */}
-            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[480px] h-[300px] sm:h-[350px] bg-gradient-to-br from-[#00C6FF] to-[#0072FF] rounded-4xl p-6 sm:p-8 text-white hover:shadow-lg transition-all duration-300 group relative overflow-hidden flex-shrink-0">
+            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[480px] h-[300px] sm:h-[350px] bg-gradient-to-br from-[#00C6FF] to-[#0072FF] rounded-3xl p-6 sm:p-8 text-white hover:shadow-lg transition-all duration-300 group relative overflow-hidden">
               <div className="flex flex-col h-full justify-between relative z-10">
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">
@@ -260,7 +259,7 @@ export default function BentoSection() {
                           x1="25"
                           y1="60"
                           x2="40"
-                          y1="60"
+                          y2="60"
                           stroke="rgba(255,255,255,0.5)"
                           strokeWidth="2"
                         />
@@ -295,7 +294,7 @@ export default function BentoSection() {
               </div>
             </div>
             {/* 5 Step Verification - Red to Pink gradient */}
-            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[700px] h-[300px] sm:h-[350px] bg-gradient-to-br from-[#FF3659] to-[#FF006E] rounded-4xl p-6 sm:p-8 text-white hover:shadow-lg transition-all duration-300 group relative overflow-hidden flex-shrink-0">
+            <div className="w-full max-w-md sm:max-w-lg lg:max-w-[700px] h-[300px] sm:h-[350px] bg-gradient-to-br from-[#FF3659] to-[#FF006E] rounded-3xl p-6 sm:p-8 text-white hover:shadow-lg transition-all duration-300 group relative overflow-hidden">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between h-full relative z-10">
                 <div className="flex-1 pr-0 sm:pr-4">
                   <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">
@@ -322,7 +321,7 @@ export default function BentoSection() {
                   </div>
                 </div>
                 {/* Large animated progress wheel */}
-                <div className="w-full h-auto max-w-[128px] sm:max-w-[192px] sm:h-[192px] relative flex-shrink-0 mt-4 sm:mt-0">
+                <div className="w-full h-auto max-w-[128px] sm:max-w-[192px] sm:h-[192px] relative mt-4 sm:mt-0">
                   <svg
                     width="192"
                     height="192"

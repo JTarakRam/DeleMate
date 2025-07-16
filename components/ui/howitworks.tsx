@@ -4,13 +4,15 @@ import { useState, useEffect, useRef } from "react";
 export default function HowItWorksSection() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const stepsContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (sectionRef.current) {
+      if (sectionRef.current && stepsContainerRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();
         const sectionHeight = rect.height;
         const windowHeight = window.innerHeight;
+
         const visibleTop = Math.max(0, windowHeight - rect.top);
         const visibleHeight = Math.min(visibleTop, sectionHeight);
         const progress = Math.max(
@@ -22,8 +24,7 @@ export default function HowItWorksSection() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Set initial progress on mount
-
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -32,7 +33,6 @@ export default function HowItWorksSection() {
     if (progress < 0.66) return 1;
     return 2;
   };
-
   const activeStep = getActiveStep(scrollProgress);
 
   const steps = [
@@ -67,7 +67,6 @@ export default function HowItWorksSection() {
       ref={sectionRef}
       className="w-full py-12 sm:py-20 px-4 sm:px-6 lg:px-8 min-h-[120vh]"
     >
-      {/* Header */}
       <div className="text-center mb-8 sm:mb-16 max-w-4xl mx-auto">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
           How DeleMate Works
@@ -77,19 +76,28 @@ export default function HowItWorksSection() {
           and reliable.
         </p>
       </div>
-      {/* Steps Container */}
-      <div className="relative max-w-6xl mx-auto">
-        {/* Progress Line - Now visible on all screen sizes, positioned to the left */}
+      <div ref={stepsContainerRef} className="relative max-w-6xl mx-auto">
         <div
           className="absolute left-6 sm:left-1/2 transform sm:-translate-x-1/2 w-1 bg-gray-200 rounded-full"
           style={{ top: "10px", height: "calc(100% - 80px)" }}
         >
           <div
-            className="w-full bg-blue-500 rounded-full transition-all duration-1000 ease-out" // Increased duration
+            className="w-full bg-blue-500 rounded-full transition-all duration-1000 ease-out"
             style={{ height: `${scrollProgress * 100}%` }}
           />
         </div>
-        {/* Steps */}
+
+        {stepsContainerRef.current && (
+          <div
+            className="absolute left-6 sm:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 border-2 border-white shadow-md transition-all duration-1000 ease-out z-20 animate-pulse-circle"
+            style={{
+              top: `calc(10px + ${
+                scrollProgress * (stepsContainerRef.current.offsetHeight - 90)
+              }px)`,
+            }}
+          />
+        )}
+
         {steps.map((step, index) => (
           <div
             key={index}
@@ -97,22 +105,17 @@ export default function HowItWorksSection() {
               index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
             }`}
           >
-            {/* Content and Mobile Circle Wrapper */}
-            {/* On mobile, this is a flex row with circle on left, content on right */}
-            {/* On desktop, this becomes w-1/2 and aligns left/right based on index */}
             <div
               className={`w-full md:w-1/2 flex items-start ${
                 index % 2 === 0 ? "md:pr-16" : "md:pl-16"
               } pl-16 sm:pl-20`}
             >
-              {/* Mobile/Desktop Circle Indicator */}
               <div
-                className={`absolute left-6 sm:left-1/2 transform -translate-x-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center z-10 bg-white border-2 border-gray-200 shadow-sm transition-all duration-1000`} // Increased duration
-                style={{ top: "0px" }} // Position at the top of the step content
+                className={`absolute left-6 sm:left-1/2 transform -translate-x-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center z-10 bg-white border-2 border-gray-200 shadow-sm transition-all duration-1000`}
+                style={{ top: "0px" }}
               >
                 <div
                   className={`w-full h-full rounded-full flex items-center justify-center text-white text-lg sm:text-xl transition-all duration-1000 ${
-                    // Increased duration
                     activeStep >= index
                       ? `bg-gradient-to-br ${step.color} scale-110 shadow-xl`
                       : "bg-gray-300"
@@ -121,11 +124,9 @@ export default function HowItWorksSection() {
                   {step.icon}
                 </div>
               </div>
-              {/* Content Block */}
               <div className="flex-1">
                 <div
                   className={`transition-all duration-1000 ${
-                    // Increased duration
                     activeStep >= index
                       ? "opacity-100 translate-y-0"
                       : "opacity-50 translate-y-8"
@@ -157,7 +158,6 @@ export default function HowItWorksSection() {
                 </div>
               </div>
             </div>
-            {/* Illustration */}
             <div
               className={`w-full md:w-1/2 mt-8 md:mt-0 ${
                 index % 2 === 0 ? "md:pl-16" : "md:pr-16"
@@ -165,7 +165,6 @@ export default function HowItWorksSection() {
             >
               <div
                 className={`transition-all duration-1000 ${
-                  // Increased duration
                   activeStep >= index
                     ? "opacity-100 translate-y-0"
                     : "opacity-50 translate-y-8"
@@ -196,14 +195,12 @@ function SignUpIllustration({ isActive }: { isActive: boolean }) {
     <div className="w-full h-64 flex items-center justify-center">
       <div className="w-40 h-64 sm:w-48 sm:h-80 bg-gray-900 rounded-3xl p-2 sm:p-3 shadow-2xl">
         <div className="w-full h-full bg-white rounded-2xl overflow-hidden relative">
-          {/* Status Bar */}
           <div className="h-6 sm:h-8 bg-gray-100 flex items-center justify-between px-2 sm:px-4 text-xs font-medium">
             <span>9:41</span>
             <div className="flex items-center gap-1">
               <div className="w-3 h-1.5 sm:w-4 sm:h-2 bg-green-500 rounded-sm"></div>
             </div>
           </div>
-          {/* App Header */}
           <div className="p-2 sm:p-4 text-center border-b border-gray-100">
             <h4 className="font-bold text-blue-600 text-base sm:text-lg">
               DeleMate
@@ -212,7 +209,6 @@ function SignUpIllustration({ isActive }: { isActive: boolean }) {
               Create your account
             </p>
           </div>
-          {/* Form */}
           <div className="p-2 sm:p-4 space-y-2 sm:space-y-4">
             <div>
               <label className="text-xs text-gray-500 block mb-0.5 sm:mb-1">
@@ -242,7 +238,6 @@ function SignUpIllustration({ isActive }: { isActive: boolean }) {
               Create Account
             </button>
           </div>
-          {/* Success State */}
           {isActive && (
             <div className="absolute inset-0 bg-white/95 flex items-center justify-center animate-fade-in">
               <div className="text-center">
@@ -281,7 +276,6 @@ function TravelerIllustration({ isActive }: { isActive: boolean }) {
         <p className="text-xs text-gray-500">Mumbai → Delhi</p>
       </div>
       <div className="space-y-1 sm:space-y-1.5 w-full max-w-xs mx-auto">
-        {/* Traveler 1 */}
         <div
           className={`bg-gray-50 rounded-lg p-2 sm:p-2.5 border border-gray-200 transition-all duration-500 ${
             isActive ? "translate-x-0 opacity-100" : "translate-x-4 opacity-60"
@@ -302,7 +296,6 @@ function TravelerIllustration({ isActive }: { isActive: boolean }) {
             </div>
           </div>
         </div>
-        {/* Traveler 2 - Selected */}
         <div
           className={`bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg p-2 sm:p-2.5 text-white transition-all duration-700 ${
             isActive
@@ -327,7 +320,6 @@ function TravelerIllustration({ isActive }: { isActive: boolean }) {
             </div>
           )}
         </div>
-        {/* Traveler 3 */}
         <div
           className={`bg-gray-50 rounded-lg p-2 sm:p-2.5 border border-gray-200 transition-all duration-900 ${
             isActive ? "translate-x-0 opacity-60" : "translate-x-4 opacity-30"
@@ -350,7 +342,6 @@ function TravelerIllustration({ isActive }: { isActive: boolean }) {
           </div>
         </div>
       </div>
-      {/* Route indicator */}
       {isActive && (
         <div className="mt-2 sm:mt-3 flex items-center justify-center animate-fade-in">
           <div className="flex items-center gap-1 sm:gap-2 text-xs text-gray-500">

@@ -3,6 +3,8 @@ import { Montserrat, Instrument_Serif, Lexend, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layouts/navbar";
 import Footer from "@/components/ui/footer";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -42,6 +44,8 @@ export default function RootLayout({
       <body
         className={`${lexend.className} antialiased bg-white text-gray-900`}
       >
+        <Analytics />
+        <SpeedInsights />
         <Navbar />
         <main>{children}</main>
         <Footer />
