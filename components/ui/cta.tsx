@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   FaTruck,
   FaRoute,
@@ -117,12 +118,17 @@ export default function CTASection() {
 
             {/* CTA Button */}
             <div className="space-y-4">
-              <button className="bg-black hover:bg-gray-800 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl group">
-                <span className="mr-2">Send Your Parcel</span>
-                <span className="inline-block transform group-hover:translate-x-1 transition-transform">
-                  →
-                </span>
-              </button>
+              <Link
+                href="https://play.google.com/store/apps/details?id=com.delemate.delemate&hl=en_US"
+                target="_blank"
+              >
+                <button className="bg-black hover:bg-gray-800 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl group">
+                  <span className="mr-2">Send Your Parcel</span>
+                  <span className="inline-block transform group-hover:translate-x-1 transition-transform">
+                    →
+                  </span>
+                </button>
+              </Link>
 
               <div className="flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-500">
                 <div className="flex items-center gap-1">

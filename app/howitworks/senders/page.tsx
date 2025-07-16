@@ -13,6 +13,7 @@ import {
   Box,
 } from "lucide-react"; // Added Truck, Box
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // New PostPackageIllustration component
 function PostPackageIllustration({ isActive }: { isActive: boolean }) {
@@ -438,7 +439,8 @@ export default function Senders() {
             transition={{ duration: 0.6, delay: 0.8 }}
           >
             <motion.a
-              href="#"
+              href="https://play.google.com/store/apps/details?id=com.delemate.delemate&hl=en_US"
+              target="_blank"
               className="flex items-center gap-3 bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-xl transition-colors shadow-lg hover:shadow-xl"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -462,7 +464,8 @@ export default function Senders() {
               </div>
             </motion.a>
             <motion.a
-              href="#"
+              href="https://apps.apple.com/in/app/delemate/id6547860986"
+              target="_blank"
               className="flex items-center gap-3 bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-xl transition-colors shadow-lg hover:shadow-xl"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -698,7 +701,12 @@ export default function Senders() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Get Started Now
+                <Link
+                  target="_blank"
+                  href="https://play.google.com/store/apps/details?id=com.delemate.delemate&hl=en_US#"
+                >
+                  Get Started Now
+                </Link>
               </motion.button>
             </div>
           </motion.div>

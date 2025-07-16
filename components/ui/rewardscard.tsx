@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BiMoney } from "react-icons/bi";
 import { FaTrain, FaBus, FaBicycle, FaPlane, FaCar } from "react-icons/fa";
 
@@ -82,7 +83,12 @@ export default function TravelOptionsSection() {
         {/* Call to Action */}
         <div className="text-center mt-12 sm:mt-16">
           <button className="bg-white hover:bg-gray-100 text-[#133bbf] font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-xl text-base sm:text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg">
-            Start Earning Today
+            <Link
+              href="https://play.google.com/store/apps/details?id=com.delemate.delemate&hl=en_US"
+              target="_blank"
+            >
+              Start Earning Today
+            </Link>
           </button>
           <p className="text-gray-300 mt-4 text-sm sm:text-base">
             Join thousands of travelers already earning extra income

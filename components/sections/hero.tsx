@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Zap } from "lucide-react";
+import Link from "next/link";
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -202,8 +203,10 @@ export default function HeroSection() {
           variants={itemVariants}
         >
           {/* Google Play Button */}
-          <a
-            href="#"
+          <Link
+            alt="googleplaylink"
+            target="_blank"
+            href="https://play.google.com/store/apps/details?id=com.delemate.delemate&hl=en_US"
             className="flex items-center gap-0 sm:gap-3 bg-black hover:bg-gray-800 text-white px-3 py-2 sm:px-6 sm:py-3 rounded-xl transition-colors shadow-lg hover:shadow-xl w-full sm:w-auto justify-center"
           >
             <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-md flex items-center justify-center">
@@ -223,10 +226,12 @@ export default function HeroSection() {
                 Google Play
               </div>
             </div>
-          </a>
+          </Link>
           {/* App Store Button */}
-          <a
-            href="#"
+          <Link
+            alt="appstorelink"
+            target="_blank"
+            href="https://apps.apple.com/in/app/delemate/id6547860986"
             className="flex items-center gap-0 sm:gap-3 bg-black hover:bg-gray-800 text-white px-3 py-2 sm:px-6 sm:py-3 rounded-xl transition-colors shadow-lg hover:shadow-xl w-full sm:w-auto justify-center"
           >
             <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-md flex items-center justify-center">
@@ -246,7 +251,7 @@ export default function HeroSection() {
                 App Store
               </div>
             </div>
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
     </section>
