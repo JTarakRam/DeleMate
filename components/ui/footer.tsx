@@ -40,7 +40,7 @@ const Footer = () => {
           DeleMate
         </h1>
         <p className="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto">
-          Delievring Trust.
+          Delivering Trust
         </p>
       </div>
 
