@@ -133,7 +133,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="mailto:info@delemate.com"
+                  href="mailto:contact@delemate.com"
                   className="text-sm text-gray-200 hover:text-white transition-colors"
                 >
                   contact@delemate.com
@@ -141,7 +141,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="tel:+911234567890"
+                  href="tel:+916305835023"
                   className="text-sm text-gray-200 hover:text-white transition-colors"
                 >
                   +91-6305835023
