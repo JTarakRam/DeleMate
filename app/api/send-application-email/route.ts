@@ -4,17 +4,17 @@ import { NextResponse } from 'next/server';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
-    console.log('📧 Email API called');
+  console.log('📧 Email API called');
 
-    try {
-        const applicationData = await request.json();
-        console.log('📧 Application data received for:', applicationData.full_name);
+  try {
+    const applicationData = await request.json();
+    console.log('📧 Application data received for:', applicationData.full_name);
 
-        const { data, error } = await resend.emails.send({
-            from: 'DeleMate Careers <onboarding@resend.dev>',
-            to: [process.env.CEO_EMAIL || 'your-email@gmail.com'],
-            subject: `New Job Application - ${applicationData.full_name} for ${applicationData.role_applying_for}`,
-            html: `
+    const { data, error } = await resend.emails.send({
+      from: 'DeleMate Careers <onboarding@resend.dev>',
+      to: [process.env.CEO_EMAIL || 'tarak@delemate.com'],
+      subject: `New Job Application - ${applicationData.full_name} for ${applicationData.role_applying_for}`,
+      html: `
         <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; line-height: 1.6;">
           <div style="background: linear-gradient(135deg, #133bbf, #7043dc); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
             <h1 style="margin: 0; font-size: 24px;">New Job Application Received</h1>
@@ -122,27 +122,27 @@ export async function POST(request: Request) {
           </div>
         </div>
       `,
-        });
+    });
 
-        if (error) {
-            console.error('📧 Resend error:', error);
-            return NextResponse.json({ error }, { status: 500 });
-        }
-
-        console.log('📧 Email sent successfully:', data?.id);
-        return NextResponse.json({
-            success: true,
-            messageId: data?.id
-        });
-
-    } catch (error: any) {
-        console.error('📧 Email sending error:', error);
-        return NextResponse.json(
-            {
-                success: false,
-                error: error.message
-            },
-            { status: 500 }
-        );
+    if (error) {
+      console.error('📧 Resend error:', error);
+      return NextResponse.json({ error }, { status: 500 });
     }
+
+    console.log('📧 Email sent successfully:', data?.id);
+    return NextResponse.json({
+      success: true,
+      messageId: data?.id
+    });
+
+  } catch (error: any) {
+    console.error('📧 Email sending error:', error);
+    return NextResponse.json(
+      {
+        success: false,
+        error: error.message
+      },
+      { status: 500 }
+    );
+  }
 }
