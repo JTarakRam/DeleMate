@@ -2,7 +2,7 @@
 
 import { supabase } from "@/lib/supabase"
 import { revalidatePath } from "next/cache"
-import { v4 as uuidv4 } from "uuid" // For generating unique file names
+import { v4 as uuidv4 } from "uuid"
 
 export async function applyForJob(prevState: any, formData: FormData) {
     const fullName = formData.get("fullName") as string
@@ -30,7 +30,7 @@ export async function applyForJob(prevState: any, formData: FormData) {
     const twitter = formData.get("twitter") as string
     const github = formData.get("github") as string
     const videoLink = formData.get("videoLink") as string
-    const resumeFile = formData.get("resume") as File // Get the file from formData
+    const resumeFile = formData.get("resume") as File
 
     // Basic validation for required text fields
     if (!fullName || !email || !role || !remembered || !motivation || !topSkills || !proudProject) {
@@ -42,12 +42,12 @@ export async function applyForJob(prevState: any, formData: FormData) {
     // Handle resume file upload
     if (resumeFile && resumeFile.size > 0) {
         const fileExtension = resumeFile.name.split(".").pop()
-        const fileName = `${uuidv4()}.${fileExtension}` // Generate a unique file name
-        const filePath = `resumes/${fileName}` // Path in your Supabase Storage bucket
+        const fileName = `${uuidv4()}.${fileExtension}`
+        const filePath = `resumes/${fileName}`
 
         try {
             const { data: uploadData, error: uploadError } = await supabase.storage
-                .from("resumes") // Your bucket name
+                .from("resumes")
                 .upload(filePath, resumeFile, {
                     cacheControl: "3600",
                     upsert: false,
@@ -58,7 +58,6 @@ export async function applyForJob(prevState: any, formData: FormData) {
                 return { success: false, message: `Resume upload failed: ${uploadError.message}` }
             }
 
-            // Get the public URL of the uploaded file
             const { data: publicUrlData } = supabase.storage.from("resumes").getPublicUrl(filePath)
             resumeUrl = publicUrlData.publicUrl
         } catch (error: any) {
@@ -71,6 +70,7 @@ export async function applyForJob(prevState: any, formData: FormData) {
     }
 
     try {
+        // Insert into database
         const { data, error } = await supabase.from("careers_applications").insert([
             {
                 full_name: fullName,
@@ -98,7 +98,7 @@ export async function applyForJob(prevState: any, formData: FormData) {
                 twitter_url: twitter,
                 github_portfolio_url: github,
                 video_link: videoLink,
-                resume_url: resumeUrl, // Store the resume URL
+                resume_url: resumeUrl,
             },
         ])
 
@@ -107,8 +107,58 @@ export async function applyForJob(prevState: any, formData: FormData) {
             return { success: false, message: `Submission failed: ${error.message}` }
         }
 
+        // Send email notification to CEO
+        try {
+            const emailResponse = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/send-application-email`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    full_name: fullName,
+                    email: email,
+                    phone: phone,
+                    city: city,
+                    role_applying_for: role,
+                    remembered_when_die: remembered,
+                    motivation_to_work_hard: motivation,
+                    lose_track_of_time: loseTrackOfTime,
+                    why_delemate: whyDeleMate,
+                    top_skills: topSkills,
+                    top_tools: topTools,
+                    proud_project: proudProject,
+                    weekly_commitment_hours: Number.parseInt(weeklyCommitment),
+                    speed_or_perfection: speedOrPerfection,
+                    stuck_problem_process: stuckProblem,
+                    time_management: timeManagement,
+                    working_alone_or_others: workingAloneOrOthers,
+                    ownership_example: ownership,
+                    ethical_decision: ethicalDecision,
+                    critical_feedback: criticalFeedback,
+                    define_role: defineRole,
+                    linkedin_url: linkedin,
+                    twitter_url: twitter,
+                    github_portfolio_url: github,
+                    video_link: videoLink,
+                    resume_url: resumeUrl,
+                }),
+            })
+
+            const emailResult = await emailResponse.json()
+
+            if (!emailResult.success) {
+                console.error('Email sending failed:', emailResult.error)
+                // Still return success for the user since the application was saved
+            }
+
+        } catch (emailError) {
+            console.error('Email sending error:', emailError)
+            // Still return success for the user since the application was saved
+        }
+
         revalidatePath("/careers")
-        return { success: true, message: "Application submitted successfully!" }
+        return { success: true, message: "Application submitted successfully! We'll review your application and get back to you soon." }
+
     } catch (error: any) {
         console.error("Unexpected error during submission:", error)
         return { success: false, message: `An unexpected error occurred: ${error.message || "Please try again."}` }
