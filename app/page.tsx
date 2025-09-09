@@ -8,6 +8,10 @@ import CTASection from "@/components/ui/cta";
 import { Marquee } from "@/components/magicui/marquee";
 import Image from "next/image";
 import FaqSection from "@/components/ui/faq-section";
+import {
+  AchievementsAwesome,
+  DemoAchievements,
+} from "@/components/sections/review";
 
 export default function Home() {
   return (
@@ -29,6 +33,7 @@ export default function Home() {
           height={200}
         />{" "}
       </div>
+      <DemoAchievements />
       <BentoSection />
       <HowItWorksSection />
       <TravelOptionsSection />

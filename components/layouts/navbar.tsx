@@ -12,17 +12,17 @@ import {
   FileText,
   Briefcase,
   BookOpen,
-} from "lucide-react"; // Added new icons
+} from "lucide-react";
 import Image from "next/image";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false); // State for mobile menu open/close
+  const [isOpen, setIsOpen] = useState(false);
   const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState<{
     [key: string]: boolean;
-  }>({}); // State for desktop dropdown hover
+  }>({});
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState<{
     [key: string]: boolean;
-  }>({}); // State for mobile dropdown click
+  }>({});
   const timeoutRef = useRef<{ [key: string]: NodeJS.Timeout | null }>({});
 
   const navigation = [
@@ -34,7 +34,7 @@ export default function Navbar() {
     },
     { name: "Blogs", href: "/blog" },
     { name: "About", href: "/about-us" },
-    { name: "Others", href: "#", hasDropdown: true, dropdownKey: "others" }, // Changed Others to have a dropdown
+    { name: "Others", href: "#", hasDropdown: true, dropdownKey: "others" },
   ];
 
   const howItWorksDropdownItems = [
@@ -72,7 +72,7 @@ export default function Navbar() {
       href: "/terms-and-conditions",
     },
     {
-      icon: Shield, // Reusing Shield for Refund Policy, or could use a new icon if available
+      icon: Shield,
       title: "Refund Policy",
       description: "Information on refunds and cancellations",
       href: "/refund-policy",
@@ -127,6 +127,7 @@ export default function Navbar() {
               />
             </Link>
           </div>
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navigation.map((nav) => (
@@ -148,6 +149,7 @@ export default function Navbar() {
                       />
                       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#133bbf] transition-all group-hover:w-full"></span>
                     </button>
+
                     {/* Dropdown Menu */}
                     {isDesktopDropdownOpen[nav.dropdownKey!] && (
                       <div
@@ -196,15 +198,24 @@ export default function Navbar() {
               </div>
             ))}
           </div>
-          {/* Desktop Auth Buttons */}
+
+          {/* Desktop Auth Buttons - FIXED DUAL BOX SHADOWS */}
           <div className="hidden md:flex items-center gap-4">
             <Link
-              href="/contact-us" // Changed to /contact as per previous context
-              className="bg-[#133bbf] hover:from-[#133bbf]/80 hover:to-[#7043dc]/80 text-white px-6 py-2.5 rounded-full text-sm font-medium tracking-tight shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all transform hover:scale-105"
+              href="/contact-us"
+              className="relative bg-[#133bb7] text-white px-6 py-2.5 rounded-full text-sm font-medium tracking-tight transition-all transform hover:scale-105 overflow-hidden"
+              style={{
+                // Combined both box shadows with comma separation
+                boxShadow:
+                  "inset 0px 2.14px 5.14px 0px rgba(255, 255, 255, 0.3), 0px 1.14px 2.14px 0px #133bb7, 0px 4px 15px rgba(19, 59, 183, 0.25)",
+              }}
             >
-              Contact Us
+              {/* Optional: Add a subtle overlay for better text readability */}
+              <div className="absolute inset-0 bg-black/5 rounded-full hover:bg-black/0 transition-all"></div>
+              <span className="relative z-10">Contact Us</span>
             </Link>
           </div>
+
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -214,6 +225,7 @@ export default function Navbar() {
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </nav>
+
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden border-t border-gray-200/60 bg-white/95 backdrop-blur-xl rounded-b-2xl py-4">
@@ -275,10 +287,16 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
+
               <div className="pt-4 border-t border-gray-200/60 space-y-3">
                 <Link
-                  href="/contact" // Changed to /contact as per previous context
-                  className="block bg-gradient-to-r from-[#133bbf] to-[#7043dc] text-white px-6 py-2.5 rounded-full text-sm font-medium text-center shadow-lg shadow-blue-500/25"
+                  href="/contact-us"
+                  className="block bg-[#133bb7] text-white px-6 py-2.5 rounded-full text-sm font-medium text-center"
+                  style={{
+                    // Same dual box shadows for mobile
+                    boxShadow:
+                      "inset 0px 2.14px 5.14px 0px rgba(255, 255, 255, 0.3), 0px 1.14px 2.14px 0px #133bb7, 0px 4px 15px rgba(19, 59, 183, 0.25)",
+                  }}
                   onClick={() => setIsOpen(false)}
                 >
                   Contact Us

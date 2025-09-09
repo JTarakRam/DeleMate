@@ -107,54 +107,54 @@ export async function applyForJob(prevState: any, formData: FormData) {
             return { success: false, message: `Submission failed: ${error.message}` }
         }
 
-        // Send email notification to CEO
-        try {
-            const emailResponse = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/send-application-email`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    full_name: fullName,
-                    email: email,
-                    phone: phone,
-                    city: city,
-                    role_applying_for: role,
-                    remembered_when_die: remembered,
-                    motivation_to_work_hard: motivation,
-                    lose_track_of_time: loseTrackOfTime,
-                    why_delemate: whyDeleMate,
-                    top_skills: topSkills,
-                    top_tools: topTools,
-                    proud_project: proudProject,
-                    weekly_commitment_hours: Number.parseInt(weeklyCommitment),
-                    speed_or_perfection: speedOrPerfection,
-                    stuck_problem_process: stuckProblem,
-                    time_management: timeManagement,
-                    working_alone_or_others: workingAloneOrOthers,
-                    ownership_example: ownership,
-                    ethical_decision: ethicalDecision,
-                    critical_feedback: criticalFeedback,
-                    define_role: defineRole,
-                    linkedin_url: linkedin,
-                    twitter_url: twitter,
-                    github_portfolio_url: github,
-                    video_link: videoLink,
-                    resume_url: resumeUrl,
-                }),
-            })
+        // // Send email notification to CEO
+        // try {
+        //     const emailResponse = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/send-application-email`, {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({
+        //             full_name: fullName,
+        //             email: email,
+        //             phone: phone,
+        //             city: city,
+        //             role_applying_for: role,
+        //             remembered_when_die: remembered,
+        //             motivation_to_work_hard: motivation,
+        //             lose_track_of_time: loseTrackOfTime,
+        //             why_delemate: whyDeleMate,
+        //             top_skills: topSkills,
+        //             top_tools: topTools,
+        //             proud_project: proudProject,
+        //             weekly_commitment_hours: Number.parseInt(weeklyCommitment),
+        //             speed_or_perfection: speedOrPerfection,
+        //             stuck_problem_process: stuckProblem,
+        //             time_management: timeManagement,
+        //             working_alone_or_others: workingAloneOrOthers,
+        //             ownership_example: ownership,
+        //             ethical_decision: ethicalDecision,
+        //             critical_feedback: criticalFeedback,
+        //             define_role: defineRole,
+        //             linkedin_url: linkedin,
+        //             twitter_url: twitter,
+        //             github_portfolio_url: github,
+        //             video_link: videoLink,
+        //             resume_url: resumeUrl,
+        //         }),
+        //     })
 
-            const emailResult = await emailResponse.json()
+        //     const emailResult = await emailResponse.json()
 
-            if (!emailResult.success) {
-                console.error('Email sending failed:', emailResult.error)
-                // Still return success for the user since the application was saved
-            }
+        //     if (!emailResult.success) {
+        //         console.error('Email sending failed:', emailResult.error)
+        //         // Still return success for the user since the application was saved
+        //     }
 
-        } catch (emailError) {
-            console.error('Email sending error:', emailError)
-            // Still return success for the user since the application was saved
-        }
+        // } catch (emailError) {
+        //     console.error('Email sending error:', emailError)
+        //     // Still return success for the user since the application was saved
+        // }
 
         revalidatePath("/careers")
         return { success: true, message: "Application submitted successfully! We'll review your application and get back to you soon." }
